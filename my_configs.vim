@@ -234,8 +234,8 @@ set noswapfile               " 不生成交换文件
 set list                     " 显示特殊字符，其中Tab使用高亮~代替，尾部空白使用高亮点号代替
 set listchars=tab:\~\ ,trail:.
 set expandtab                " 将 Tab 自动转化成空格 [需要输入真正的 Tab 符时，使用 Ctrl+V + Tab]
-"set showmatch               " 显示括号配对情况
-
+set showmatch               " 显示括号配对情况
+set cursorcolumn
 " 使用 vimdiff 时，长行自动换行
 autocmd FilterWritePre * if &diff | setlocal wrap< | endif
 
@@ -251,19 +251,3 @@ set encoding=utf-8
 set fileencodings=utf-8,gbk,cp936,latin-1
 set fileformat=unix
 set fileformats=unix,mac,dos
-
-if has('python3')
-    command! -nargs=1 Py py3 <args>
-    if g:isMAC
-        set pythonthreedll=/usr/local/Frameworks/Python.framework/Versions/3.7/Python
-        set pythonthreehome=/usr/local/Frameworks/Python.framework/Versions/3.7
-    endif
-else
-    command! -nargs=1 Py py <args>
-    if g:isMAC
-        set pythondll=/usr/local/Frameworks/Python.framework/Versions/2.7/Python
-        set pythonhome=/usr/local/Frameworks/Python.framework/Versions/2.7
-    endif
-endif
-let g:pymode_python = 'python3'                " 使用 Python3 语法检查 [Python-Mode]
-let g:pymode_options_colorcolumn = 0           " 关闭右侧的单行字符长度标尺
